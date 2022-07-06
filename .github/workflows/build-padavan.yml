@@ -36,7 +36,6 @@ jobs:
       run: |
         if [ $KERNEL = "4.3" ] ; then
         git clone --depth=1 https://github.com/asanfang/rt-n56u
-        fi
         cd /rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
