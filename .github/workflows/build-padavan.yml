@@ -42,7 +42,7 @@ jobs:
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: WNY-S1
+        TNAME: MZ-R13P
         KERNEL: 3.4
       run: |
         cd /rt-n56u/trunk
