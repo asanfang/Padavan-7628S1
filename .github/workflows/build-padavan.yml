@@ -34,8 +34,8 @@ jobs:
       env:
         KERNEL: 3.4
       run: |
-        if [ $KERNEL = "4.4" ] ; then
-        git clone --depth=1 https://github.com/asanfang 
+        if [ $KERNEL = "4.3" ] ; then
+        git clone --depth=1 https://github.com/asanfang/rt-n56u
         fi
         cd /rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
