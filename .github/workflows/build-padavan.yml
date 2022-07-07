@@ -34,9 +34,12 @@ jobs:
       env:
         KERNEL: 3.4
       run: |
-        if [ $KERNEL = "3.4" ] ; then
+        if [ $KERNEL = "4.4" ] ; then
         git clone --depth=1 https://github.com/asanfang/rt-n56u
-        cd /rt-n56u/toolchain-mipsel
+        else
+        git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
+        fi
+        cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
     - name: Build Firmware
@@ -44,13 +47,14 @@ jobs:
         TNAME: HC5661A
         KERNEL: 3.4
       run: |
-        cd /rt-n56u/trunk
+        cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
         echo "configs/templates/$TNAME.config not found "
         exit 1
         fi
         cp -f configs/templates/$TNAME.config .config
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
+
         sudo ./clear_tree
         sudo ./build_firmware_modify $TNAME 0
         sudo mv -f images/*.trx /opt/images/
